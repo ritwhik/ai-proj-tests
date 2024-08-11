@@ -10,8 +10,8 @@ mp_drawing = mp.solutions.drawing_utils
 mp_drawing_styles = mp.solutions.drawing_styles
 
 hands = mp_hands.Hands(
-    min_detection_confidence=0.5,
-    min_tracking_confidence=0.5,
+    min_detection_confidence=0.9,
+    min_tracking_confidence=0.9,
     max_num_hands=2  # Set the maximum number of hands to track
 )
 gesture_to_text_mapping = {
@@ -120,7 +120,7 @@ def main():
 
                         # Draw bounding box and prediction text on the frame
                         cv2.rectangle(frame, (x_min, y_min), (x_max, y_max), (0, 255, 0), 2)
-                        cv2.putText(frame, f"Predicted: {predicted_text}", (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 0, 0), 2, cv2.LINE_AA)
+                        cv2.putText(frame, f"Predicted: {predicted_text}", (x_min, y_min - 10), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 0, 0), 2, cv2.LINE_AA)
 
                     except Exception as e:
                         st.error(f"Error during prediction: {e}")
